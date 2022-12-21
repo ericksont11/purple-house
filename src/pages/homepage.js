@@ -6,6 +6,7 @@ import Coop from "../components/coop"
 import House from "../components/house"
 import Tansy from "../components/tansy"
 import ActivityFeed from "../components/activityFeed"
+import ActivityFeed2 from "../components/activityFeed2"
 import Clover from "../components/clover";
 import Fia from "../components/fia"
 import Kelsey from "../components/kelsey";
@@ -15,6 +16,7 @@ import Bike from "../components/bike";
 
 function Homepage() {
 
+    const [speed, setSpeed] = useState(1)
     const [restartOne, setRestartOne] = useState()
     const [restartTwo, setRestartTwo] = useState()
     const [restartThree, setRestartThree] = useState()
@@ -28,10 +30,16 @@ function Homepage() {
     const restartFourRef = useRef(restartFour);
     const restartFiveRef = useRef(restartFive);
 
+    const bikeRef = useRef(null)
     const tansyRef = useRef(null)
+    const fiaRef = useRef(null)
+    const cloverRef = useRef(null)
+    const backgroundRef = useRef(null)
+    const turtleRef = useRef(null)
     const kelseyRef = useRef(null)
     const coopRef = useRef(null);
     const activityFeedRef = useRef(null)
+    const activityFeedRef2 = useRef(null)
     const characterRef = useRef(null);
     const chickenRef = useRef(null);
     const chickenTwoRef = useRef(null);
@@ -85,7 +93,7 @@ function Homepage() {
 
 
     return (
-        <div style={backgroundStyle}>
+        <div style={backgroundStyle} ref={backgroundRef}>
             {/* <div 
                 style={{
                     position: "fixed",
@@ -102,6 +110,7 @@ function Homepage() {
                 ref={characterRef} 
                 tansyRef={tansyRef}
                 activityFeedRef={activityFeedRef}
+                activityFeedRef2={activityFeedRef2}
                 chickenCountRef={chickenCountRef} 
                 setChickenCount={setChickenCount} 
                 chickenRef={chickenRef} 
@@ -125,21 +134,28 @@ function Homepage() {
                 setRestartThree={setRestartThree}
                 setRestartFour={setRestartFour}
                 setRestartFive={setRestartFive}
+                setSpeed={setSpeed}
+                turtleRef={turtleRef}
+                backgroundRef={backgroundRef}
+                fiaRef={fiaRef}
+                cloverRef={cloverRef}
+                bikeRef={bikeRef}
             />
-            <Chicken name={"Tigerlily"} color={"red"} ref={chickenRef} intervalRef={intervalRef} num={0} restart={restartOneRef} setRestart={setRestartOne}/>
-            <Chicken name={"Nugget"} color={"yellow"} ref={chickenTwoRef} intervalRef={intervalTwoRef} num={1}  restart={restartTwoRef} setRestart={setRestartTwo}/>
-            <Chicken name={"Lemon"} color={"purple"} ref={chickenThreeRef} intervalRef={intervalThreeRef} num={2}  restart={restartThreeRef} setRestart={setRestartThree}/>
-            <Chicken name={"Jello"} color={"orange"} ref={chickenFourRef} intervalRef={intervalFourRef} num={3}  restart={restartFourRef} setRestart={setRestartFour}/>
-            <Chicken name={"Pip"} color={"maroon"} ref={chickenFiveRef} intervalRef={intervalFiveRef} num={4}  restart={restartFiveRef} setRestart={setRestartFive}/>
+            <Chicken name={"Hop Little Bunny"} color={"red"} ref={chickenRef} speed={speed} intervalRef={intervalRef} num={0} restart={restartOneRef} setRestart={setRestartOne}/>
+            <Chicken name={"Tigerlily"} color={"yellow"} ref={chickenTwoRef} speed={speed} intervalRef={intervalTwoRef} num={1}  restart={restartTwoRef} setRestart={setRestartTwo}/>
+            <Chicken name={"Nugget"} color={"purple"} ref={chickenThreeRef} speed={speed} intervalRef={intervalThreeRef} num={2}  restart={restartThreeRef} setRestart={setRestartThree}/>
+            <Chicken name={"Joan"} color={"orange"} ref={chickenFourRef} speed={speed} intervalRef={intervalFourRef} num={3}  restart={restartFourRef} setRestart={setRestartFour}/>
+            <Chicken name={"Pigwidgeon"} color={"maroon"} ref={chickenFiveRef} speed={speed} intervalRef={intervalFiveRef} num={4}  restart={restartFiveRef} setRestart={setRestartFive}/>
             <Coop ref={coopRef}/>
             <House/>
             <Tansy ref={tansyRef}/>
             <Kelsey ref={kelseyRef}/>
-            <Fia />
-            <Clover/>
-            <Turtle/>
-            <Bike/>
+            <Fia ref={fiaRef}/>
+            <Clover ref={cloverRef}/>
+            <Turtle ref={turtleRef}/>
+            <Bike ref={bikeRef}/>
             <ActivityFeed ref={activityFeedRef}/>
+            <ActivityFeed2 ref={activityFeedRef2}/>
             <div style={countStyle}>{`COUNT:  `}{chickenCount}</div>
         </div>
     );

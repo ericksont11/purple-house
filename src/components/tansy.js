@@ -7,7 +7,7 @@ const Tansy = React.forwardRef((props, ref) => {
       width: "4.75%",
       height: "14%",
       position: "absolute",
-      left: "91%",
+      left: "94%",
       top: "85%",
       overflow: "hidden",
     };

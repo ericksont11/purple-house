@@ -7,8 +7,8 @@ const Clover = React.forwardRef((props, ref) => {
       width: "4.75%",
       height: "14%",
       position: "absolute",
-      left: "86%",
-      top: "25%",
+      left: "82%",
+      top: "85%",
       overflow: "hidden",
     };
   

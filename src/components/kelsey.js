@@ -1,6 +1,5 @@
 import React from "react";
 import KelseyImage from "../images/kelsey.png";
-import KelseyCelebrating from "../images/kelsey.gif";
 
 const Kelsey = React.forwardRef((props, ref) => {
 

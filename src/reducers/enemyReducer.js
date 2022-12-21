@@ -16,7 +16,7 @@ export const enemyReducer = (state, action) => {
                 placeholder = [
                     {
                         ...state[0,action.counter],
-                        left: parseFloat(state[action.counter].left) - action.speed + '%',
+                        left: parseFloat(state[action.counter].left) - state[0].speed + '%',
                     },
                     ...state.slice(action.counter+1)
                 ]
@@ -25,7 +25,7 @@ export const enemyReducer = (state, action) => {
                     ...state.slice(0,action.counter),
                     {
                         ...state[action.counter],
-                        left: parseFloat(state[action.counter].left) - action.speed + '%',
+                        left: parseFloat(state[action.counter].left) - state[0].speed + '%',
                     },
                     ...state.slice(action.counter+1)
                 ]
@@ -36,7 +36,7 @@ export const enemyReducer = (state, action) => {
                     placeholder = [
                         {
                             ...state[0,action.counter],
-                            left: parseFloat(state[action.counter].left) + action.speed + '%',
+                            left: parseFloat(state[action.counter].left) + state[0].speed + '%',
                         },
                         ...state.slice(action.counter+1)
                     ]
@@ -45,7 +45,7 @@ export const enemyReducer = (state, action) => {
                     ...state.slice(0,action.counter),
                     {
                         ...state[action.counter],
-                        left: parseFloat(state[action.counter].left) + action.speed + '%',
+                        left: parseFloat(state[action.counter].left) + state[0].speed + '%',
                     },
                     ...state.slice(action.counter+1)
                 ]
@@ -56,7 +56,7 @@ export const enemyReducer = (state, action) => {
                     placeholder = [
                         {
                             ...state[0,action.counter],
-                            top: parseFloat(state[action.counter].top) - action.speed + '%',
+                            top: parseFloat(state[action.counter].top) - state[0].speed + '%',
                         },
                         ...state.slice(action.counter+1)
                     ]
@@ -65,7 +65,7 @@ export const enemyReducer = (state, action) => {
                     ...state.slice(0,action.counter),
                     {
                         ...state[action.counter],
-                        top: parseFloat(state[action.counter].top) - action.speed + '%',
+                        top: parseFloat(state[action.counter].top) - state[0].speed + '%',
                     },
                     ...state.slice(action.counter+1)
                 ]
@@ -76,7 +76,7 @@ export const enemyReducer = (state, action) => {
                     placeholder = [
                         {
                             ...state[0,action.counter],
-                            top: parseFloat(state[action.counter].top) + action.speed + '%',
+                            top: parseFloat(state[action.counter].top) + state[0].speed + '%',
                         },
                         ...state.slice(action.counter+1)
                     ]
@@ -85,12 +85,30 @@ export const enemyReducer = (state, action) => {
                     ...state.slice(0,action.counter),
                     {
                         ...state[action.counter],
-                        top: parseFloat(state[action.counter].top) + action.speed + '%',
+                        top: parseFloat(state[action.counter].top) + state[0].speed + '%',
                     },
                     ...state.slice(action.counter+1)
                 ]
             }
                 return placeholder
+        case 'REDUCE_SPEED':
+            placeholder = [
+                {
+                    ...state[0],
+                    speed: 0.5,
+                },
+                ...state.slice(1)
+            ]
+            return placeholder
+        case 'INCREASE_SPEED':
+            placeholder = [
+                {
+                    ...state[0],
+                    speed: 1,
+                },
+                ...state.slice(1)
+            ]
+            return placeholder
         case 'RESET':
             return  [
                 {

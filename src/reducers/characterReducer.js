@@ -24,6 +24,16 @@ export const characterReducer = (state, action) => {
           ...state,
           top: parseFloat(state.top) + state.speed + "%",
         };
+      case "SPEED_UP":
+        return {
+          ...state,
+          speed: 1,
+        };
+      case "RESET_SPEED":
+        return {
+          ...state,
+          speed: 0.5
+        };
       case "RESET":
         return {
           ...state,

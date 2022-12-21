@@ -9,7 +9,8 @@ const enemies = [
     level: 0,
     height: '6%',
     width: '4.5%',
-    movement: 'paused'
+    movement: 'paused',
+    speed: 1
   },
   {
     left: '75%',
@@ -17,7 +18,8 @@ const enemies = [
     level: 0,
     height: '6%',
     width: '4.5%',
-    movement: 'paused'
+    movement: 'paused',
+    speed: 1
   },
   {
     left: '75%',
@@ -25,7 +27,8 @@ const enemies = [
     level: 0,
     height: '6%',
     width: '4.5%',
-    movement: 'paused'
+    movement: 'paused',
+    speed: 1
   },
   {
     left: '75%',
@@ -33,7 +36,8 @@ const enemies = [
     level: 0,
     height: '6%',
     width: '4.5%',
-    movement: 'paused'
+    movement: 'paused',
+    speed: 1
   },
   {
     left: '75%',
@@ -41,7 +45,8 @@ const enemies = [
     level: 0,
     height: '6%',
     width: '4.5%',
-    movement: 'paused'
+    movement: 'paused',
+    speed: 1
   }
 ]
 

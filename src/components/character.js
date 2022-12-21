@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CharacterContext } from "../contexts/characterContext";
 import EliFront from "../images/eli.png";
+import FastEli from "../images/fast_eli.png";
 import EliChicken from "../images/eli-chicken.png";
 import KelseyCelebrating from "../images/kelsey.gif";
 import KelseyImage from "../images/kelsey.png";
+import { EnemyContext } from "../contexts/enemyContext";
 
 const Character = React.forwardRef(({
   coopRef,
@@ -31,19 +33,26 @@ const Character = React.forwardRef(({
   setRestartFour,
   setRestartFive,
   activityFeedRef,
-  kelseyRef
+  kelseyRef,
+  turtleRef,
+  backgroundRef,
+  activityFeedRef2,
+  fiaRef,
+  cloverRef,
+  bikeRef
   }, 
   ref
    ) => {
   let recentKey = "";
   let interval = "";
-  const chickenNames = ["Tigerlily", "Nugget", "Lemon", "Jello", "Pip"]
+  const chickenNames = ["Hop Little Bunny", "Tigerlily", "Nugget", "Joan", "Pigwidgeon"]
 
   const holding = false
   let holdingRef = useRef(holding);
   
   const character = useContext(CharacterContext);
   const characterRef = useRef(character);
+  const enemyContext = useContext(EnemyContext)
   
   const intervalSpeed = 33.33;
   const setRefs = () => {
@@ -61,6 +70,8 @@ const Character = React.forwardRef(({
     // backgroundColor:"blue"
   };
 
+  let slowed = false
+  let fast = false
   const chickenCaught = []
   const characterControls = (
     e,
@@ -104,6 +115,34 @@ const Character = React.forwardRef(({
     } else if (e.key === " " || e.key === "Enter") {
 
       if(holdingRef.current === false) {
+        if((parseFloat(ref.current.style.top) < parseFloat(turtleRef.current.style.top) + parseFloat(turtleRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(turtleRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(turtleRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(turtleRef.current.style.width) + parseFloat(turtleRef.current.style.left) && turtleRef.current.style.display !== "none" && slowed === false)
+        ){
+          console.log(slowed)
+          slowed = true
+          enemyContext.dispatch({ type: "REDUCE_SPEED" });
+          backgroundRef.current.style.background = "linear-gradient(to bottom, #B1B1B1 0%, #B1B1B1 35%, #444444 35%, #444444 100%)"
+          setTimeout(()=>{
+            enemyContext.dispatch({ type: "INCREASE_SPEED" });
+            backgroundRef.current.style.background = "linear-gradient(to bottom, #87CEEB 0%, #87CEEB 35%, #00A619 35%, #00A619 100%)"
+            slowed = false
+          }, 2500)
+        }
+        if((parseFloat(ref.current.style.top) < parseFloat(bikeRef.current.style.top) + parseFloat(bikeRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(bikeRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(bikeRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(bikeRef.current.style.width) + parseFloat(bikeRef.current.style.left) && bikeRef.current.style.display !== "none" && fast === false)
+        ){
+          console.log(fast)
+          fast = true
+          character.dispatch({ type: "SPEED_UP" });
+          ref.current.src = FastEli
+          setTimeout(()=>{
+            fast = false
+            character.dispatch({ type: "RESET_SPEED" });
+            if (holdingRef.current === false) {
+              ref.current.src = EliFront
+            } else {
+              ref.current.src = EliChicken
+            }
+          }, 2500)
+        }
         if((parseFloat(ref.current.style.top) < parseFloat(chickenTwoRef.current.style.top) + parseFloat(chickenTwoRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenTwoRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenTwoRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenTwoRef.current.style.width) + parseFloat(chickenTwoRef.current.style.left) && chickenTwoRef.current.style.display !== "none")
         ){
           ref.current.src = EliChicken
@@ -132,6 +171,7 @@ const Character = React.forwardRef(({
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
           }, 1250)
+
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenThreeRef.current.style.top) + parseFloat(chickenThreeRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenThreeRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenThreeRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenThreeRef.current.style.width) + parseFloat(chickenThreeRef.current.style.left) && chickenThreeRef.current.style.display !== "none")
         ){
           ref.current.src = EliChicken
@@ -146,6 +186,7 @@ const Character = React.forwardRef(({
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
           }, 1250)
+
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFourRef.current.style.top) + parseFloat(chickenFourRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFourRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFourRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFourRef.current.style.width) + parseFloat(chickenFourRef.current.style.left) && chickenFourRef.current.style.display !== "none")
         ){
           ref.current.src = EliChicken
@@ -160,6 +201,7 @@ const Character = React.forwardRef(({
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
           }, 1250)
+
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFiveRef.current.style.top) + parseFloat(chickenFiveRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFiveRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFiveRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFiveRef.current.style.width) + parseFloat(chickenFiveRef.current.style.left) && chickenFiveRef.current.style.display !== "none")
         ){
           ref.current.src = EliChicken
@@ -174,25 +216,41 @@ const Character = React.forwardRef(({
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
           }, 1250)
+
         }
       } else {
         if((parseFloat(ref.current.style.top) < parseFloat(coopRef.current.style.top) + parseFloat(coopRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(coopRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(coopRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(coopRef.current.style.width) + parseFloat(coopRef.current.style.left))
         ){
+          activityFeedRef.current.style.display = `block`
+          kelseyRef.current.src = KelseyCelebrating
+          setTimeout(()=>{
+            activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
+          }, 1250)
           ref.current.src = EliFront
           holdingRef.current = false
+          let plural = ""
+          if(chickenCaught.length > 1 ){
+            plural="s"
+          }
           if(chickenCaught.includes(1)){
+            activityFeedRef.current.innerText = `${chickenCaught.length} chicken${plural} in the coop!`
             setRestartOne(true)
             restartOneRef.current = true
           }  if (chickenCaught.includes(2)){
+            activityFeedRef.current.innerText = `${chickenCaught.length} chicken${plural} in the coop!`
             setRestartTwo(true)
             restartTwoRef.current = true
           }  if (chickenCaught.includes(3)){
+            activityFeedRef.current.innerText = `${chickenCaught.length} chicken${plural} in the coop!`
             setRestartThree(true)
             restartThreeRef.current = true
           }  if (chickenCaught.includes(4)){
+            activityFeedRef.current.innerText = `${chickenCaught.length} chicken${plural} in the coop!`
             setRestartFour(true)
             restartFourRef.current = true
           }  if (chickenCaught.includes(5)){
+            activityFeedRef.current.innerText = `${chickenCaught.length} chicken${plural} in the coop!`
             setRestartFive(true)
             restartFiveRef.current = true
           }
@@ -204,130 +262,148 @@ const Character = React.forwardRef(({
   };
 
   const releaseChicken = () => {
+    const releaser = [
+      {
+        name:"Tansy",
+        ref: tansyRef
+      },
+      {
+        name:"Fia",
+        ref: fiaRef
+      },
+      {
+        name:"Clover",
+        ref: cloverRef
+      }
+    ]
     if (restartOneRef.current !== true && restartTwoRef.current !== true && restartThreeRef.current !== true && restartFourRef.current !== true && restartFiveRef.current !== true) return
     if (restartOneRef.current === true && restartTwoRef.current === true && restartThreeRef.current === true && restartFourRef.current === true && restartFiveRef.current === true) return
-      if(restartOneRef.current === true && tansyRef.current.style.top >= "85%"){
-        console.log(restartOneRef.current)
+      if(restartOneRef.current === true && tansyRef.current.style.top >= "85%" && cloverRef.current.style.top >= "85%" && fiaRef.current.style.top >= "85%"){
+        const num = randomIntFromInterval(0, 2) 
         let returnTansy =  ""
         let check = setInterval(()=>{
-          if(tansyRef.current.style.top === "70%"){
+          if(releaser[num].ref.current.style.top === "70%"){
             clearInterval(check)
             clearInterval(returnTansy)
             restartOneRef.current = false
             setRestartOne(false)
             chickenCaught.splice(chickenCaught.indexOf(1), 1);
-            activityFeedRef.current.style.display = `block`
-            activityFeedRef.current.innerText = `Tansy released ${chickenNames[0]}!`
+            activityFeedRef2.current.style.display = `block`
+            activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[0]}!`
             setTimeout(()=>{
-              activityFeedRef.current.style.display = `none`
+              activityFeedRef2.current.style.display = `none`
             }, 1250)
             returnTansy = setInterval(()=>{
-              if(tansyRef.current.style.top === "85%"){
+              if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
                 clearInterval(check)
               }
-              tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) + 1 + "%"
+              releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) + 1 + "%"
             }, 100)
           }
-          tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) - 1 + "%"
+          releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) - 1 + "%"
         }, 100)
-      } else if (restartTwoRef.current === true && tansyRef.current.style.top >= "85%"){
+      } else if (restartTwoRef.current === true && tansyRef.current.style.top >= "85%" && cloverRef.current.style.top >= "85%" && fiaRef.current.style.top >= "85%"){
+        const num = randomIntFromInterval(0, 2) 
         let returnTansy =  ""
         let check = setInterval(()=>{
-          if(tansyRef.current.style.top === "70%"){
+          if(releaser[num].ref.current.style.top === "70%"){
             clearInterval(check)
             clearInterval(returnTansy)
             restartTwoRef.current = false
             setRestartTwo(false)
             chickenCaught.splice(chickenCaught.indexOf(2), 1);
-            activityFeedRef.current.style.display = `block`
-            activityFeedRef.current.innerText = `Tansy released ${chickenNames[1]}!`
+            activityFeedRef2.current.style.display = `block`
+            activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[1]}!`
             setTimeout(()=>{
-              activityFeedRef.current.style.display = `none`
+              activityFeedRef2.current.style.display = `none`
             }, 1250)
             returnTansy = setInterval(()=>{
-              if(tansyRef.current.style.top === "85%"){
+              if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
                 clearInterval(check)
               }
-              tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) + 1 + "%"
+              releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) + 1 + "%"
             }, 100)
           }
-          tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) - 1 + "%"
+          releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) - 1 + "%"
         }, 100)
       
-      } else if (restartThreeRef.current === true && tansyRef.current.style.top >= "85%"){
+      } else if (restartThreeRef.current === true && tansyRef.current.style.top >= "85%" && cloverRef.current.style.top >= "85%" && fiaRef.current.style.top >= "85%"){
+        const num = randomIntFromInterval(0, 2) 
         let returnTansy =  ""
         let check = setInterval(()=>{
-          if(tansyRef.current.style.top === "70%"){
+          if(releaser[num].ref.current.style.top === "70%"){
             clearInterval(check)
             clearInterval(returnTansy)
             restartThreeRef.current = false
             setRestartThree(false)
             chickenCaught.splice(chickenCaught.indexOf(3), 1);
-            activityFeedRef.current.style.display = `block`
-            activityFeedRef.current.innerText = `Tansy released ${chickenNames[2]}!`
+            activityFeedRef2.current.style.display = `block`
+            activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[2]}!`
             setTimeout(()=>{
-              activityFeedRef.current.style.display = `none`
+              activityFeedRef2.current.style.display = `none`
             }, 1250)
             returnTansy = setInterval(()=>{
-              if(tansyRef.current.style.top === "85%"){
+              if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
                 clearInterval(check)
               }
-              tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) + 1 + "%"
+              releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) + 1 + "%"
             }, 100)
           }
-          tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) - 1 + "%"
+          releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) - 1 + "%"
         }, 100)
       
-      } else if (restartFourRef.current === true && tansyRef.current.style.top >= "85%"){
+      } else if (restartFourRef.current === true && tansyRef.current.style.top >= "85%" && cloverRef.current.style.top >= "85%" && fiaRef.current.style.top >= "85%"){
+        const num = randomIntFromInterval(0, 2) 
         let returnTansy =  ""
         let check = setInterval(()=>{
-          if(tansyRef.current.style.top === "70%"){
+          if(releaser[num].ref.current.style.top === "70%"){
             clearInterval(check)
             clearInterval(returnTansy)
             restartFourRef.current = false
             setRestartFour(false)
             chickenCaught.splice(chickenCaught.indexOf(4), 1);
-            activityFeedRef.current.style.display = `block`
-            activityFeedRef.current.innerText = `Tansy released ${chickenNames[3]}!`
+            activityFeedRef2.current.style.display = `block`
+            activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[3]}!`
             setTimeout(()=>{
-              activityFeedRef.current.style.display = `none`
+              activityFeedRef2.current.style.display = `none`
             }, 1250)
             returnTansy = setInterval(()=>{
-              if(tansyRef.current.style.top === "85%"){
+              if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
                 clearInterval(check)
               }
-              tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) + 1 + "%"
+              releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) + 1 + "%"
             }, 100)
           }
-          tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) - 1 + "%"
+          releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) - 1 + "%"
         }, 100)
-      } else if (restartFiveRef.current === true && tansyRef.current.style.top >= "85%"){
+      } else if (restartFiveRef.current === true && tansyRef.current.style.top >= "85%" && cloverRef.current.style.top >= "85%" && fiaRef.current.style.top >= "85%"){
+        const num = randomIntFromInterval(0, 2) 
         let returnTansy =  ""
         let check = setInterval(()=>{
-          if(tansyRef.current.style.top === "70%"){
+          if(releaser[num].ref.current.style.top === "70%"){
             clearInterval(check)
             clearInterval(returnTansy)
             restartFiveRef.current = false
             setRestartFive(false)
             chickenCaught.splice(chickenCaught.indexOf(5), 1);
-            activityFeedRef.current.style.display = `block`
-            activityFeedRef.current.innerText = `Tansy released ${chickenNames[4]}!`
+            activityFeedRef2.current.style.display = `block`
+            activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[4]}!`
             setTimeout(()=>{
-              activityFeedRef.current.style.display = `none`
+              activityFeedRef2.current.style.display = `none`
             }, 1250)
             returnTansy = setInterval(()=>{
-              if(tansyRef.current.style.top === "85%"){
+              if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
                 clearInterval(check)
               }
-              tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) + 1 + "%"
+              releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) + 1 + "%"
             }, 100)
           }
-          tansyRef.current.style.top = parseFloat(tansyRef.current.style.top) - 1 + "%"
+          releaser[num].ref.current.style.top = parseFloat(releaser[num].ref.current.style.top) - 1 + "%"
         }, 100)
       }
   }
@@ -349,7 +425,6 @@ const Character = React.forwardRef(({
     setInterval(() => {
       const randomInt = randomIntFromInterval(0,9)
         if(randomInt > 5){
-          console.log(randomInt)
           releaseChicken()
         }
     }, 1700);

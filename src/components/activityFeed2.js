@@ -1,12 +1,12 @@
 import React from "react";
 
-const ActivityFeed = React.forwardRef(({text}, ref) => {
+const ActivityFeed2 = React.forwardRef(({text}, ref) => {
 
     const feedStyle = {
         height: "20%",
         position: "absolute",
         left: "3%",
-        top: "15%",
+        top: "20%",
         overflow: "hidden",
         display: "none",
         color:"white",
@@ -27,5 +27,5 @@ const ActivityFeed = React.forwardRef(({text}, ref) => {
     );
 });
   
-export default ActivityFeed;
+export default ActivityFeed2;
   

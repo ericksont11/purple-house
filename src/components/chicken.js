@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { EnemyContext } from "../contexts/enemyContext";
 import ChickenImage from "../images/chicken.png";
 
-const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color, name}, ref) => {
+const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color, name, speed}, ref) => {
   const enemy = useContext(EnemyContext);
 
   const chickenStyle = {
@@ -41,7 +41,7 @@ const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color,
           clearInterval(interval)
           startEnemies()
         }
-        enemy.dispatch({type:'MOVE_LEFT', counter:num, speed:1})
+        enemy.dispatch({type:'MOVE_LEFT', counter:num})
       },50)
       intervalRef.current = interval
     } else if (direction === 0 && parseFloat(ref.current.style.left) <= 50) {
@@ -50,7 +50,7 @@ const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color,
           clearInterval(interval)
           startEnemies()
         }
-        enemy.dispatch({type:'MOVE_RIGHT', counter:num, speed:1})
+        enemy.dispatch({type:'MOVE_RIGHT', counter:num})
       },50)
       intervalRef.current = interval
     } else if (direction === 1 && parseFloat(ref.current.style.top) <= 50) {
@@ -59,7 +59,7 @@ const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color,
           clearInterval(interval)
           startEnemies()
         }
-        enemy.dispatch({type:'MOVE_BOTTOM', counter:num, speed:1})
+        enemy.dispatch({type:'MOVE_BOTTOM', counter:num})
       },50)
       intervalRef.current = interval
     } else if (direction === 1 && parseFloat(ref.current.style.top) >= 50) {
@@ -68,7 +68,7 @@ const Chicken = React.forwardRef(({intervalRef, num, restart, setRestart, color,
           clearInterval(interval)
           startEnemies()
         }
-        enemy.dispatch({type:'MOVE_TOP', counter:num, speed:1})
+        enemy.dispatch({type:'MOVE_TOP', counter:num})
       },50)
       intervalRef.current = interval
     } 

@@ -7,8 +7,8 @@ const Fia = React.forwardRef((props, ref) => {
       width: "4.75%",
       height: "14%",
       position: "absolute",
-      left: "91%",
-      top: "25%",
+      left: "88%",
+      top: "85%",
       overflow: "hidden",
     };
   
