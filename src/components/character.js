@@ -39,7 +39,8 @@ const Character = React.forwardRef(({
   activityFeedRef2,
   fiaRef,
   cloverRef,
-  bikeRef
+  bikeRef,
+  fireRef
   }, 
   ref
    ) => {
@@ -102,7 +103,7 @@ const Character = React.forwardRef(({
       if (e.key.toLowerCase() === "s") recentKey = "s";
       if (e.key === "ArrowDown") recentKey = "ArrowDown";
       interval = setInterval(() => {
-        character.dispatch({ type: "MOVE_DOWN" });
+        character.dispatch({ type: "MOVE_DOWN", ref:fireRef });
       }, intervalSpeed);
     } else if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") {
       e.preventDefault();
@@ -110,7 +111,7 @@ const Character = React.forwardRef(({
       if (e.key.toLowerCase() === "w") recentKey = "w";
       if (e.key === "ArrowUp") recentKey = "ArrowUp";
       interval = setInterval(() => {
-        character.dispatch({ type: "MOVE_UP" });
+        character.dispatch({ type: "MOVE_UP", ref:fireRef });
       }, intervalSpeed);
     } else if (e.key === " " || e.key === "Enter") {
 
@@ -125,7 +126,7 @@ const Character = React.forwardRef(({
             enemyContext.dispatch({ type: "INCREASE_SPEED" });
             backgroundRef.current.style.background = "linear-gradient(to bottom, #87CEEB 0%, #87CEEB 35%, #00A619 35%, #00A619 100%)"
             slowed = false
-          }, 2500)
+          }, 4500)
         }
         if((parseFloat(ref.current.style.top) < parseFloat(bikeRef.current.style.top) + parseFloat(bikeRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(bikeRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(bikeRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(bikeRef.current.style.width) + parseFloat(bikeRef.current.style.left) && bikeRef.current.style.display !== "none" && fast === false)
         ){
@@ -141,7 +142,7 @@ const Character = React.forwardRef(({
             } else {
               ref.current.src = EliChicken
             }
-          }, 2500)
+          }, 4500)
         }
         if((parseFloat(ref.current.style.top) < parseFloat(chickenTwoRef.current.style.top) + parseFloat(chickenTwoRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenTwoRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenTwoRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenTwoRef.current.style.width) + parseFloat(chickenTwoRef.current.style.left) && chickenTwoRef.current.style.display !== "none")
         ){
@@ -156,7 +157,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenRef.current.style.top) + parseFloat(chickenRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenRef.current.style.width) + parseFloat(chickenRef.current.style.left) && chickenRef.current.style.display !== "none")
         ){
           ref.current.src = EliChicken
@@ -170,7 +171,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
 
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenThreeRef.current.style.top) + parseFloat(chickenThreeRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenThreeRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenThreeRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenThreeRef.current.style.width) + parseFloat(chickenThreeRef.current.style.left) && chickenThreeRef.current.style.display !== "none")
         ){
@@ -185,7 +186,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
 
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFourRef.current.style.top) + parseFloat(chickenFourRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFourRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFourRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFourRef.current.style.width) + parseFloat(chickenFourRef.current.style.left) && chickenFourRef.current.style.display !== "none")
         ){
@@ -200,7 +201,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
 
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFiveRef.current.style.top) + parseFloat(chickenFiveRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFiveRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFiveRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFiveRef.current.style.width) + parseFloat(chickenFiveRef.current.style.left) && chickenFiveRef.current.style.display !== "none")
         ){
@@ -215,7 +216,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
 
         }
       } else {
@@ -226,7 +227,7 @@ const Character = React.forwardRef(({
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
             kelseyRef.current.src = KelseyImage
-          }, 1250)
+          }, 3000)
           ref.current.src = EliFront
           holdingRef.current = false
           let plural = ""
@@ -292,7 +293,7 @@ const Character = React.forwardRef(({
             activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[0]}!`
             setTimeout(()=>{
               activityFeedRef2.current.style.display = `none`
-            }, 1250)
+            }, 3000)
             returnTansy = setInterval(()=>{
               if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
@@ -317,7 +318,7 @@ const Character = React.forwardRef(({
             activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[1]}!`
             setTimeout(()=>{
               activityFeedRef2.current.style.display = `none`
-            }, 1250)
+            }, 3000)
             returnTansy = setInterval(()=>{
               if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
@@ -343,7 +344,7 @@ const Character = React.forwardRef(({
             activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[2]}!`
             setTimeout(()=>{
               activityFeedRef2.current.style.display = `none`
-            }, 1250)
+            }, 3000)
             returnTansy = setInterval(()=>{
               if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
@@ -369,7 +370,7 @@ const Character = React.forwardRef(({
             activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[3]}!`
             setTimeout(()=>{
               activityFeedRef2.current.style.display = `none`
-            }, 1250)
+            }, 3000)
             returnTansy = setInterval(()=>{
               if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)
@@ -394,7 +395,7 @@ const Character = React.forwardRef(({
             activityFeedRef2.current.innerText = `${releaser[num].name} released ${chickenNames[4]}!`
             setTimeout(()=>{
               activityFeedRef2.current.style.display = `none`
-            }, 1250)
+            }, 3000)
             returnTansy = setInterval(()=>{
               if(releaser[num].ref.current.style.top === "85%"){
                 clearInterval(returnTansy)

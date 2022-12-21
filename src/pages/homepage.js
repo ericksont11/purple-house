@@ -12,6 +12,7 @@ import Fia from "../components/fia"
 import Kelsey from "../components/kelsey";
 import Turtle from "../components/turtle";
 import Bike from "../components/bike";
+import Fire from "../components/fire";
 
 
 function Homepage() {
@@ -31,6 +32,7 @@ function Homepage() {
     const restartFiveRef = useRef(restartFive);
 
     const bikeRef = useRef(null)
+    const fireRef = useRef(null)
     const tansyRef = useRef(null)
     const fiaRef = useRef(null)
     const cloverRef = useRef(null)
@@ -140,6 +142,7 @@ function Homepage() {
                 fiaRef={fiaRef}
                 cloverRef={cloverRef}
                 bikeRef={bikeRef}
+                fireRef={fireRef}
             />
             <Chicken name={"Hop Little Bunny"} color={"red"} ref={chickenRef} speed={speed} intervalRef={intervalRef} num={0} restart={restartOneRef} setRestart={setRestartOne}/>
             <Chicken name={"Tigerlily"} color={"yellow"} ref={chickenTwoRef} speed={speed} intervalRef={intervalTwoRef} num={1}  restart={restartTwoRef} setRestart={setRestartTwo}/>
@@ -156,6 +159,7 @@ function Homepage() {
             <Bike ref={bikeRef}/>
             <ActivityFeed ref={activityFeedRef}/>
             <ActivityFeed2 ref={activityFeedRef2}/>
+            <Fire ref={fireRef}/>
             <div style={countStyle}>{`COUNT:  `}{chickenCount}</div>
         </div>
     );

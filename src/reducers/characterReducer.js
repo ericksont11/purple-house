@@ -14,12 +14,18 @@ export const characterReducer = (state, action) => {
         };
       case "MOVE_UP":
         if (parseFloat(state.top) === 0) return state;
+        if(action.ref){
+          if(parseFloat(state.top) < 60) {action.ref.current.style.zIndex = 200}
+        }
         return {
           ...state,
           top: parseFloat(state.top) - state.speed + "%",
         };
       case "MOVE_DOWN":
         if (parseFloat(state.top) === 83) return state;
+        if(action.ref){
+          if(parseFloat(state.top) >= 60){action.ref.current.style.zIndex = 0}
+        }
         return {
           ...state,
           top: parseFloat(state.top) + state.speed + "%",
