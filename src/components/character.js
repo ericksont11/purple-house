@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { CharacterContext } from "../contexts/characterContext";
 import EliFront from "../images/eli.png";
 import EliChicken from "../images/eli-chicken.png";
+import KelseyCelebrating from "../images/kelsey.gif";
+import KelseyImage from "../images/kelsey.png";
 
 const Character = React.forwardRef(({
   coopRef,
@@ -28,7 +30,8 @@ const Character = React.forwardRef(({
   setRestartThree,
   setRestartFour,
   setRestartFive,
-  activityFeedRef
+  activityFeedRef,
+  kelseyRef
   }, 
   ref
    ) => {
@@ -109,9 +112,11 @@ const Character = React.forwardRef(({
           chickenTwoRef.current.style.display = "none"
           activityFeedRef.current.style.display = `block`
           activityFeedRef.current.innerText = `Eli caught ${chickenTwoRef.current.id}!`
+          kelseyRef.current.src = KelseyCelebrating
           chickenCaught.push(2)
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
           }, 1250)
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenRef.current.style.top) + parseFloat(chickenRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenRef.current.style.width) + parseFloat(chickenRef.current.style.left) && chickenRef.current.style.display !== "none")
         ){
@@ -122,8 +127,10 @@ const Character = React.forwardRef(({
           chickenCaught.push(1)
           activityFeedRef.current.style.display = `block`
           activityFeedRef.current.innerText = `Eli caught ${chickenRef.current.id}!`
+          kelseyRef.current.src = KelseyCelebrating
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
           }, 1250)
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenThreeRef.current.style.top) + parseFloat(chickenThreeRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenThreeRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenThreeRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenThreeRef.current.style.width) + parseFloat(chickenThreeRef.current.style.left) && chickenThreeRef.current.style.display !== "none")
         ){
@@ -134,8 +141,10 @@ const Character = React.forwardRef(({
           chickenThreeRef.current.style.display = "none"
           chickenCaught.push(3)
           activityFeedRef.current.innerText = `Eli caught ${chickenThreeRef.current.id}!`
+          kelseyRef.current.src = KelseyCelebrating
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
           }, 1250)
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFourRef.current.style.top) + parseFloat(chickenFourRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFourRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFourRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFourRef.current.style.width) + parseFloat(chickenFourRef.current.style.left) && chickenFourRef.current.style.display !== "none")
         ){
@@ -146,8 +155,10 @@ const Character = React.forwardRef(({
           chickenFourRef.current.style.display = "none"
           chickenCaught.push(4)
           activityFeedRef.current.innerText = `Eli caught ${chickenFourRef.current.id}!`
+          kelseyRef.current.src = KelseyCelebrating
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
           }, 1250)
         } else if((parseFloat(ref.current.style.top) < parseFloat(chickenFiveRef.current.style.top) + parseFloat(chickenFiveRef.current.style.height)) && (parseFloat(ref.current.style.top) + parseFloat(ref.current.style.height) > parseFloat(chickenFiveRef.current.style.top)) && (parseFloat(ref.current.style.left) + parseFloat(ref.current.style.width) > parseFloat(chickenFiveRef.current.style.left)) && (parseFloat(ref.current.style.left) < parseFloat(chickenFiveRef.current.style.width) + parseFloat(chickenFiveRef.current.style.left) && chickenFiveRef.current.style.display !== "none")
         ){
@@ -158,8 +169,10 @@ const Character = React.forwardRef(({
           chickenCaught.push(5)
           activityFeedRef.current.style.display = `block`
           activityFeedRef.current.innerText = `Eli caught ${chickenFiveRef.current.id}!`
+          kelseyRef.current.src = KelseyCelebrating
           setTimeout(()=>{
             activityFeedRef.current.style.display = `none`
+            kelseyRef.current.src = KelseyImage
           }, 1250)
         }
       } else {

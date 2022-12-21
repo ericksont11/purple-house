@@ -6,7 +6,11 @@ import Coop from "../components/coop"
 import House from "../components/house"
 import Tansy from "../components/tansy"
 import ActivityFeed from "../components/activityFeed"
-import Grass from "../images/grass.png"
+import Clover from "../components/clover";
+import Fia from "../components/fia"
+import Kelsey from "../components/kelsey";
+import Turtle from "../components/turtle";
+import Bike from "../components/bike";
 
 
 function Homepage() {
@@ -25,6 +29,7 @@ function Homepage() {
     const restartFiveRef = useRef(restartFive);
 
     const tansyRef = useRef(null)
+    const kelseyRef = useRef(null)
     const coopRef = useRef(null);
     const activityFeedRef = useRef(null)
     const characterRef = useRef(null);
@@ -51,6 +56,16 @@ function Homepage() {
         transform: "translate(-50%, -50%)",
         overflow: "hidden",
     };
+
+
+    const countStyle = {
+        fontSize: "7vmin",
+        position: "absolute",
+        height: "10%",
+        color:"white",
+        left: "3%",
+        textShadow: ".5px 0 0 #000, 0 -.5px 0 #000, 0 .5px 0 #000, -.5px 0 0 #000"
+    }
 
     useEffect(() => {
         
@@ -83,6 +98,7 @@ function Homepage() {
                 src="test"
             ></div> */}
             <Character 
+                kelseyRef={kelseyRef}
                 ref={characterRef} 
                 tansyRef={tansyRef}
                 activityFeedRef={activityFeedRef}
@@ -118,8 +134,13 @@ function Homepage() {
             <Coop ref={coopRef}/>
             <House/>
             <Tansy ref={tansyRef}/>
+            <Kelsey ref={kelseyRef}/>
+            <Fia />
+            <Clover/>
+            <Turtle/>
+            <Bike/>
             <ActivityFeed ref={activityFeedRef}/>
-            <div>{chickenCount}</div>
+            <div style={countStyle}>{`COUNT:  `}{chickenCount}</div>
         </div>
     );
 }
