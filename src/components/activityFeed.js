@@ -9,7 +9,7 @@ const ActivityFeed = React.forwardRef(({text}, ref) => {
         top: "15%",
         overflow: "hidden",
         display: "none",
-        color:"white",
+        color:"orange",
         zIndex: 15,
         fontSize: "4vmin",
         textShadow: ".5px 0 0 #000, 0 -.5px 0 #000, 0 .5px 0 #000, -.5px 0 0 #000"

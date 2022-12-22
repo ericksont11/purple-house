@@ -40,7 +40,9 @@ const Character = React.forwardRef(({
   fiaRef,
   cloverRef,
   bikeRef,
-  fireRef
+  fireRef,
+  setDisplay,
+  setText
   }, 
   ref
    ) => {
@@ -257,6 +259,10 @@ const Character = React.forwardRef(({
           }
           chickenCountRef.current  = chickenCountRef.current  + 1
           setChickenCount(chickenCountRef.current)
+          if(chickenCaught.length > 4){
+            setDisplay("block")
+            setText("YOU DID IT! THE CHICKENS ARE NOW SAFE IN THEIR HOME!")
+          }
         }
       } 
     }

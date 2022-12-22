@@ -13,10 +13,13 @@ import Kelsey from "../components/kelsey";
 import Turtle from "../components/turtle";
 import Bike from "../components/bike";
 import Fire from "../components/fire";
+import Grass from "../images/grass.png"
+import Overlay from "../components/overlay";
 
 
 function Homepage() {
-
+    const [text, setText] = useState("CAN YOU PUT ALL THE CHICKENS BACK IN THE COOP BEFORE THEY GET OUT?")
+    const [overlay, setOverlay] = useState("block")
     const [speed, setSpeed] = useState(1)
     const [restartOne, setRestartOne] = useState()
     const [restartTwo, setRestartTwo] = useState()
@@ -72,7 +75,7 @@ function Homepage() {
         fontSize: "7vmin",
         position: "absolute",
         height: "10%",
-        color:"white",
+        color:"orange",
         left: "3%",
         textShadow: ".5px 0 0 #000, 0 -.5px 0 #000, 0 .5px 0 #000, -.5px 0 0 #000"
     }
@@ -95,8 +98,10 @@ function Homepage() {
 
 
     return (
+        <>
+        <Overlay display={overlay} setDisplay={setOverlay} text={text}/>
         <div style={backgroundStyle} ref={backgroundRef}>
-            {/* <div 
+            <div 
                 style={{
                     position: "fixed",
                     top: "35%",
@@ -106,8 +111,10 @@ function Homepage() {
                     backgroundImage: `url(${Grass})`,
                 }}
                 src="test"
-            ></div> */}
+                ></div>
             <Character 
+                setText={setText}
+                setDisplay={setOverlay}
                 kelseyRef={kelseyRef}
                 ref={characterRef} 
                 tansyRef={tansyRef}
@@ -143,7 +150,7 @@ function Homepage() {
                 cloverRef={cloverRef}
                 bikeRef={bikeRef}
                 fireRef={fireRef}
-            />
+                />
             <Chicken name={"Hop Little Bunny"} color={"red"} ref={chickenRef} speed={speed} intervalRef={intervalRef} num={0} restart={restartOneRef} setRestart={setRestartOne}/>
             <Chicken name={"Tigerlily"} color={"yellow"} ref={chickenTwoRef} speed={speed} intervalRef={intervalTwoRef} num={1}  restart={restartTwoRef} setRestart={setRestartTwo}/>
             <Chicken name={"Nugget"} color={"purple"} ref={chickenThreeRef} speed={speed} intervalRef={intervalThreeRef} num={2}  restart={restartThreeRef} setRestart={setRestartThree}/>
@@ -162,6 +169,7 @@ function Homepage() {
             <Fire ref={fireRef}/>
             <div style={countStyle}>{`COUNT:  `}{chickenCount}</div>
         </div>
+        </>
     );
 }
 
